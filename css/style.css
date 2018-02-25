@@ -1,14 +1,20 @@
-#menu
-{
 
+
+.menu
+{
+  height:15%;
+  background-color: grey;
+  border-color: black;
 }
 
-#main
+.main
 {
-
+ height:75%;
 }
 
-#footer
+.footer
 {
-
+  height:10%;
+  background-color: grey;
+  border-color: black;
 }

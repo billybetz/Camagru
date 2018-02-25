@@ -4,7 +4,9 @@
 ?>
 
 <div class="main" >
-	je suis le body
+	<div class="cadre_log">
+    page de login
+  </div>
 </div>
 
 <?php require_once("includes/footer.php"); ?>
