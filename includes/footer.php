@@ -1,3 +1,3 @@
 <div class="footer">
-	Je suis le footer
+	Site crée par Billy Betz.
 </div>

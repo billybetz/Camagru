@@ -1,20 +1,48 @@
-
-
+html, body
+{
+  background-color: #e9ebee;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
 .menu
 {
-  height:15%;
-  background-color: grey;
-  border-color: black;
+  height:50px;
+  width: 100%;
+  min-width: 1012px;
+  border-bottom:1px solid black;
 }
 
 .main
 {
- height:75%;
+  min-width: 1012px;
 }
 
 .footer
 {
-  height:10%;
-  background-color: grey;
-  border-color: black;
+
+  background-color: white;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 300px;
+  text-align: right;
+  color: teal;
+}
+
+.log_reg
+{
+  text-align: center;
+  border-radius: 20px;
+  width: 600px;
+  height: 30em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+.log-t1
+{
+  color:rgb(231, 84, 48);
+  font-size: 40px;
 }
