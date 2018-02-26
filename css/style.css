@@ -6,14 +6,16 @@ Balises existantes : <html> ; <head> ; <body> ; <p> ; <b> ; <div> ; <> ; <>
 Rappel :	balise existante -> NAME{}
 			class -> .NAME{}
 			id -> #NAME{}
-			
+
 			Balise a l'interieur d'une autre -> NAME1 NAME2{}
 			Balise qui en suit une autre -> NAME1 + NAME2{}
-			
-			
-			
-	- Billy Betz - 
+
+
+
+	- Billy Betz -
 */
+
+/* class existantes */
 
 html, body
 {
@@ -21,6 +23,14 @@ html, body
   margin: 0 0 0 0;
   padding: 0 0 0 0;
 }
+
+a
+{
+	text-decoration:none;
+}
+
+/*-_-_-_-_- header -_-_-_-_-*/
+
 .menu
 {
   height:50px;
@@ -30,10 +40,7 @@ html, body
   background-color:rgb(142,142,142);
 }
 
-.main
-{
-  min-width: 1012px;
-}
+/*-_-_-_-_- footer -_-_-_-_-*/
 
 .footer
 {
@@ -45,19 +52,17 @@ html, body
   text-align: right;
   color: teal;
 }
-a
-{
-	text-decoration:none;
-}
+
 .menu_button
 {
-	
+
 	border: 2px solid white;
 	background-color:white;
 }
+
 .menu_button:active
 {
-	
+
 }
 
 .go_login
@@ -67,6 +72,7 @@ a
 	border-right: 2px solid black;
 	border-left: 1px solid grey;
 }
+
 .go_register
 {
 	float:right;
@@ -75,16 +81,26 @@ a
 	border-left: 2px solid black;
 	border-right: 2px solid black;
 }
+
 .go_galerie
 {
 	border-left: 1px solid grey;
 	text-align:center;
 }
 
+/*-_-_-_-_- index.php -_-_-_-_-*/
+
+.main
+{
+  min-width: 1012px;
+}
+
+/*-_-_-_-_- login.php - register.php - set_new_pass.php  -_-_-_-_-*/
+
 .log_reg
 {
   vertical-align: text-top;
-  text-align: center; 
+  text-align: center;
   border-radius: 20px;
   width: 600px;
   height: 30em;
