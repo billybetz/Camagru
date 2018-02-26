@@ -4,7 +4,12 @@
 ?>
 
 <div class="main" >
-	je suis le body
+	<div class="photo_creation">
+		
+	</div>
+	<div class="photo_apercu">
+		
+	</div>
 </div>
 
 <?php require_once("includes/footer.php"); ?>

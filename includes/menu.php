@@ -1,9 +1,10 @@
 <div class="menu">
-	 <div class="log">
-		 		<a id="log" href="login.php">Login</a>
-
-				<!-- if is not connect -->
-				<a id="reg" href="register.php">Register</a>
-				<a id="gal "href="galerie.php">Galerie</a>
-	 </div>
+	<a href="."> 
+		<img src="img/acceuil.png" alt="acceuil" width="49" height="49"/> 
+	</a>
+	<a class="menu_button" href="galerie.php">Galerie</a>
+	<a class="menu_button" href="login.php">Connexion</a>
+	<!-- if is not connect -->
+	<a class="menu_button" href="register.php">Inscription</a>
+	
 </div>
