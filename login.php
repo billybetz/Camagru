@@ -1,4 +1,13 @@
 <?php
+  if (session_id() == "")
+	  session_start();
+  // verifie si l'utilisateur n'est pas deja connecté.
+  if ($_session["log_status"] != "")
+	  header("Location: index.php");
+  //recupere les données du formulaire
+  $login = $_POST["id"];
+  $mdp = $_POST["mdp"];
+  $submit = $_POST["submit"];
   require_once("includes/header.php");
 ?>
 <div class="main" >
@@ -14,7 +23,6 @@
 				<a href="set_new_pass.php">mot de passe oublié ?</a>
 			</div>
 			<button class="log-sub" type="submit" name="submit" value="OK" >Se connecter</button>
-			
 		</form>
 	
   </div>
