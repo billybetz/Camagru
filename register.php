@@ -1,34 +1,45 @@
 <?php
   if(session_id() == "")
-	  session_start;
+	  session_start();
   // verifie si l'utilisateur n'est pas deja connecté.
-  if ($_session["log_status"] != "")
+  if (isset($_SESSION['log_status']) && $_SESSION['log_status'] != 0)
 	  header("Location: index.php");
-  
-  //recupere les données du formulaire
-  $login = $_POST["id"];
-  $mdp = $_POST["mdp"];
-  $mdp2 = $_POST["mdp2"];
-  $mail = $_POST["mail"];
-  $errors[];
-  $submit = $_POST["submit"];
 ?>
 
 <?php  
   require_once("includes/header.php");
+  //fontions de verification des donnees de formulaire
+  require_once("libft_php/data_validity.php");
+  //fonctions d'éxécution des requetes sql
+  require_once("libft_php/sql_rqt.php");
 ?>
 
+
 <?php
-	if ($submit == "OK")
+	//Si l'utilisateur a cliquer sur s'enregistrer, vérifie les infos et push en db si valide.
+	// rempli la variable errors sinon.
+	if (isset($_POST['submit']) && $_POST["submit"] == "OK")
 	{
-		errors['login'] = check_login();
-		errors['mail'] = check_email();
-		errors['mdp'] = check_mdp();
-		if ((errors['login'] = check_login()) != )
-			
-		if ($mdp != $mdp2)
+		$login = $_POST["id"];
+		$mdp = $_POST["mdp"];
+		$mdp2 = $_POST["mdp2"];
+		$email = $_POST["email"];
+		$errors = array();
+		
+		$errors['login'] = check_login($login);
+		$errors['email'] = check_email($email);
+		$errors['mdp'] = check_mdp($mdp, $mdp2);
+		if ($errors['login'] == "" && $errors['email'] == "" && $errors['mdp'] == "")
 		{
-			echo "vos mots de passe ne correspondent pas.";
+			$sql = 	'
+			INSERT INTO camagru.Users (pseudo, email, passwd, rank) 
+			VALUES ("'.$login.'", "'.$email.'", "'.$mdp.'", 1);
+					';
+			
+			$ret = ft_exe_sql_rqt("add user", $bdd, $sql);
+			if (!$ret)
+				echo ("Erreur lors de l'ajout de l'utilisateur\n");
+			
 		}
 	}
 ?>
@@ -37,14 +48,17 @@
 		<div class="log-text1">INSCRIPTION</div>
 		
 		<form class="log-formulaire" method="POST" action=""> 
-			<label>Identifiant : </label> <br><input type="text" name="id"/>
+			<label>*Identifiant : </label> <br><input type="text" name="id"/>
 			<br>
-			<label>Adresse email : </label> <br><input type="text" name="mail"/>
+			<label>*Adresse email : </label> <br><input type="text" name="email"/>
 			<br>
-			<label>mot de passe : </label><br> <input type="text" name="mdp"/>
+			<label>*mot de passe : </label><br> <input type="text" name="mdp"/>
 			<br>
-			<label>répétez le mot de passe : </label> <br><input type="text" name="mdp2"/>
+			<label>*répétez le mot de passe : </label> <br><input type="text" name="mdp2"/>
 			<br>
+			<div class="already_reg">
+				deja un compte ? <a href="login.php">s'identifier</a>
+			</div>
 			<button class="log-sub" type="submit" name="submit" value="OK" >S'enregistrer</button>
 		</form>
 

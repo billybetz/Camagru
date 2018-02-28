@@ -55,7 +55,7 @@ a
 
 .menu_button
 {
-
+	float:right;
 	border: 2px solid white;
 	background-color:white;
 }
@@ -133,4 +133,10 @@ a
 	margin-bottom: -17px;
 	font-size: 13px;
 	text-decoration: underline;
+}
+
+.already_reg
+{
+	margin-bottom: -17px;
+	font-size: 13px;
 }

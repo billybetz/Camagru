@@ -1,5 +1,5 @@
 <?php
-include "libft_php/sql_rqt.php";
+require_once("libft_php/sql_rqt.php");
 //mysql server data
 $servername = "localhost";
 $user = "billy";
@@ -26,7 +26,7 @@ $sql = "
     `passwd` VARCHAR(64) NOT NULL COMMENT 'mot de passe de l\'utilisateur' ,
     `is_active` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'bool indiquant si le compte a ete activé ou non' ,
     `get_notif` BOOLEAN NOT NULL DEFAULT TRUE COMMENT 'bool indiquant si l\'utilisateur souhaite recevoir des notifications ou non' ,
-    `rank` INT NOT NULL DEFAULT '0' COMMENT 'rang de l\'utilisateur (0 basic, 1 actif, 2 admin)' , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+    `rank` INT NOT NULL DEFAULT '1' COMMENT 'rang de l\'utilisateur (1 basic, 2 actif, 3 admin)' , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 		";
 ft_exe_sql_rqt("create user table", $bdd, $sql);
 
@@ -36,10 +36,5 @@ ft_exe_sql_rqt("create user table", $bdd, $sql);
 //	VALUES ('billy', 'test', 'root', 0);
 //	";
 //ft_exe_sql_rqt("insert billy", $con, $sql);
-//ft_data_is_exist($con, "camagru.users", "pseudo", "billy");	
-$sql = "SELECT COUNT(*) FROM camagru.users WHERE pseudo = 'billy';";
-$nb = ft_exe_sql_rqt("check billy", $bdd, $sql);
-$res = mysqli_fetch_array($nb);
-echo $res[0];
 
   ?>
