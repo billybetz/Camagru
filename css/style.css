@@ -15,7 +15,7 @@ Rappel :	balise existante -> NAME{}
 	- Billy Betz -
 */
 
-/* class existantes */
+/* classes existantes */
 
 html, body
 {
@@ -28,6 +28,13 @@ a
 {
 	text-decoration:none;
 	
+}
+
+/* classes sur toutes les pages */
+
+.main
+{
+  min-width: 860px;
 }
 
 /*-_-_-_-_- header -_-_-_-_-*/
@@ -130,10 +137,16 @@ a
 
 /*-_-_-_-_- index.php -_-_-_-_-*/
 
-.main
+.photo_creation
 {
-  min-width: 860px;
+	
 }
+
+.photo_apercu
+{
+	
+}
+
 
 /*-_-_-_-_- login.php - register.php - set_new_pass.php  -_-_-_-_-*/
 

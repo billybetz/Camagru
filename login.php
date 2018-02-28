@@ -51,7 +51,7 @@
 			<label>*mot de passe : </label> <br> <input type="password" name="mdp"/>
 			<br>
 			<div class="forget_mdp">
-				<a href="set_new_pass.php">mot de passe oublié ?</a>
+				<a href="forget_pass.php">mot de passe oublié ?</a>
 			</div>
 			<button class="log-sub" type="submit" name="submit" value="OK" >Se connecter</button>
 			<br>
