@@ -1,0 +1,12 @@
+- Ecrire les fonction de check pour la partie register
+
+- implémenter la caméra
+- implémenter les filtres
+
+- faire la galerie
+- faire l'espace membre 
+- faire l'espace admin pour les rank3
+
+- changer la manière de prep les requetes pour injectionn sql
+
+- rendre le front responsive

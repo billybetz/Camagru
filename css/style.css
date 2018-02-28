@@ -27,72 +27,112 @@ html, body
 a
 {
 	text-decoration:none;
+	
 }
 
 /*-_-_-_-_- header -_-_-_-_-*/
 
 .menu
 {
-  height:50px;
+  height:65px;
   width: 100%;
   min-width: 1012px;
   /*border-bottom:1px solid black;*/
-  background-color:rgb(142,142,142);
+  background-color:rgb(100,100,70);
+  
 }
+.pos_right
+{
+	float:right;
+}
+.pos_left
+{
+	float:left;
+}
+.menu_button
+{
+	display:block;
+	width:126px;
+	height:30px;
+	margin-top:13px;
+	padding-top:5px;
+	border: 1px solid grey;
+	border-radius:4px;
+	background-color:rgb(150,150,150);
+	margin-right:10px;
+	margin-left:10px;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+	vertical-align:middle;
+	font-size: 17px;
+	
+}
+
+.menu_button:active
+{
+	background-color:orange;
+	color:black
+}
+
+.menu_button:hover
+{
+	background-color: rgb(140,140,140);
+	font-size:18; 
+	width:130px;
+	height:33px;
+	display:block;
+}
+
+.index_button
+{
+	display:block;
+	vertical-align:middle;
+	display: table-cell;
+ 	height:100%;
+	width:100px;px;
+	background-color:rgb(120,120,100);
+}
+
+.index_button > img
+{
+	margin-left:25px;
+	margin-top:5px;
+}
+
+
+
+.bonjour
+{
+	width:200px;
+	height:40px;
+	/* background-color:rgb(150,150,150); */
+	/* border: 1px solid grey; */
+	margin-top:10px;
+	text-align:center;
+	font-size:30px;
+	float:left;
+}
+
 
 /*-_-_-_-_- footer -_-_-_-_-*/
 
 .footer
 {
 
-  background-color: white;
+  background-color:rgb(100,100,70);
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   margin-top: 300px;
-  text-align: right;
-  color: teal;
-}
-
-.menu_button
-{
-	float:right;
-	border: 2px solid white;
-	background-color:white;
-}
-
-.menu_button:active
-{
-
-}
-
-.go_login
-{
-	float:right;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-	border-left: 1px solid grey;
-}
-
-.go_register
-{
-	float:right;
-	padding: 0 10 0 10;
-	margin-right: 20px;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-}
-
-.go_galerie
-{
-	border-left: 1px solid grey;
-	text-align:center;
+  text-align: center;
+  color: white;
 }
 
 /*-_-_-_-_- index.php -_-_-_-_-*/
 
 .main
 {
-  min-width: 1012px;
+  min-width: 860px;
 }
 
 /*-_-_-_-_- login.php - register.php - set_new_pass.php  -_-_-_-_-*/
@@ -140,3 +180,11 @@ a
 	margin-bottom: -17px;
 	font-size: 13px;
 }
+
+.err_log
+{
+	float:left
+	font-size: 16px;
+	color:red;
+}
+
