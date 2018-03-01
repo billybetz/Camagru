@@ -24,16 +24,22 @@ function check_login($login)
 
 function check_email($email)
 {
+	if (count($login, '@') != 1)
+		return ("adresse mail invalide");
 	return("");
 }
 
 function check_mdp($mdp)
 {
+	if (strlen($mdp) < 5)
+		return ("mot de passe trop court");
 	return("");
 }
 
 function check_mdp2($mdp, $mdp2)
 {
+	if ($mdp != $mdp2)
+		return ("vos mots de passe ne correspondent pas");
 	return("");
 }
 

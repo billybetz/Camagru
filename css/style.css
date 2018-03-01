@@ -122,29 +122,26 @@ a
 }
 
 
-/*-_-_-_-_- footer -_-_-_-_-*/
-
-.footer
-{
-
-  background-color:rgb(100,100,70);
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  margin-top: 300px;
-  text-align: center;
-  color: white;
-}
 
 /*-_-_-_-_- index.php -_-_-_-_-*/
 
 .photo_creation
 {
-	
+	width:400px;
+}
+
+#photo
+{
+	width:400px;
+	height: 200px;
 }
 
 .photo_apercu
 {
-	
+	float:right;
+	background-color: green;
+	width:400px;
+	margin-right: 50px;
 }
 
 
@@ -201,3 +198,16 @@ a
 	color:red;
 }
 
+
+/*-_-_-_-_- footer -_-_-_-_-*/
+
+.footer
+{
+
+  background-color:rgb(100,100,70);
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin:auto;
+  text-align: center;
+  color: white;
+}
