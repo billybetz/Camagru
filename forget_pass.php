@@ -8,6 +8,7 @@
 ?>
 
 <?php
+  $title = "Forget password";
   require_once("includes/header.php");
 ?>
 <div class="main" >

@@ -8,6 +8,7 @@
 ?>
 
 <?php
+  $title = "Login";
   require_once("includes/header.php");
   //fonctions d'éxécution des requetes sql
   require_once("libft_php/sql_rqt.php");

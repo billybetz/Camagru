@@ -22,6 +22,11 @@ html, body
   background-color: #e9ebee;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
+  height:100%;
+}
+body
+{
+	margin: 2rem;
 }
 
 a
@@ -34,7 +39,7 @@ a
 
 .main
 {
-  min-width: 860px;
+	margin-top: 3em;
 }
 
 /*-_-_-_-_- header -_-_-_-_-*/
@@ -46,16 +51,9 @@ a
   min-width: 1012px;
   /*border-bottom:1px solid black;*/
   background-color:rgb(100,100,70);
-  
+  border-radius: 15px;
 }
-.pos_right
-{
-	float:right;
-}
-.pos_left
-{
-	float:left;
-}
+
 .menu_button
 {
 	display:block;
@@ -66,8 +64,6 @@ a
 	border: 1px solid grey;
 	border-radius:4px;
 	background-color:rgb(150,150,150);
-	margin-right:10px;
-	margin-left:10px;
 	text-decoration:none;
 	color:white;
 	text-align:center;
@@ -96,8 +92,8 @@ a
 	display:block;
 	vertical-align:middle;
 	display: table-cell;
- 	height:100%;
-	width:100px;px;
+	width:100px;
+	height: 100%;
 	background-color:rgb(120,120,100);
 }
 
@@ -125,24 +121,61 @@ a
 
 /*-_-_-_-_- index.php -_-_-_-_-*/
 
-.photo_creation
+.video_interface
 {
-	width:400px;
+	width: 22em;
+    height: 265px;
 }
+
+#video
+{
+    width: 22em;
+    height: 265px;
+}
+
+.button_photo
+{
+	height: 2em;
+    width: 10em;
+    margin-left: 7em;
+    white-space: nowrap;
+    background-color: #e8e3e3;
+    padding: 3 20 3 20;
+    border: grey solid 1px;
+    border-radius: 4px;
+    color: black;
+    cursor: pointer;
+}
+
+.photos_interface
+{
+	width: 22em;
+    height: 265px;
+}
+
 
 #photo
 {
-	width:400px;
-	height: 200px;
+	width: 22em;
+    height: 265px;
+    border: 2px solid black;
+    background-color: #a7ada7;
+    margin-top: -1px;
 }
 
-.photo_apercu
+#button_download
 {
-	float:right;
-	background-color: green;
-	width:400px;
-	margin-right: 50px;
+    height: 2em;
+    width: 10em;
+    margin-left: 7em;
+    white-space: nowrap;
+    background-color: #e8e3e3;
+    padding: 3 20 3 20;
+    border: grey solid 1px;
+    border-radius: 4px;
+    color: black;
 }
+
 
 
 /*-_-_-_-_- login.php - register.php - set_new_pass.php  -_-_-_-_-*/
@@ -207,7 +240,9 @@ a
   background-color:rgb(100,100,70);
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  margin:auto;
+  /*margin:auto;*/
+  /*vertical-align: bottom;*/
   text-align: center;
   color: white;
+  margin-top: 3em;
 }

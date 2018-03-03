@@ -3,23 +3,55 @@
 		session_start();
 ?>
 
-<div class="menu">
-	<!--<a class=" index_button pos_left" href=".">CAMAGRU</a>-->
-	<a href="." class ="index_button pos_left">
-		<img src="img/acceuil.png" alt="acceuil" width="49" height="49"/>
-	</a>
-	<a class="menu_button pos_left" href="galerie.php">GALERIE</a>
+<div class="grid-9 has-gutter menu">
+	<div>
+		<!-- <a href="." class ="index_button pos_left"> -->
+			<a class=" menu_button" style="margin-left: 1em;" href=".">CAMAGRU</a>
+		<!-- <img src="img/acceuil.png" alt="acceuil" width="49" height="49"/> -->
+		<!-- </a> -->
+	</div>
 
+	<div>
+		<a class="menu_button " href="galerie.php">GALERIE</a>
+	</div>
+
+	<div></div>
+
+	<div></div>
+
+	<div>
+		<?php if (isset($_SESSION['log_status']) && $_SESSION['log_status'] != 0){ 
+		 ?>
+		<span class="bonjour">Bonjour <?php echo $_SESSION['id'];?>!</span>
+		<?php } 
+		?>
+	</div>
+
+	<div></div>
 	
-		<?php if (!isset($_SESSION['log_status']) || $_SESSION['log_status'] == 0){ ?>
-	<a class="menu_button pos_right" href="login.php">CONNEXION</a>
-	<a class="menu_button pos_right" href="register.php">INSCRIPTION</a>
-	
-		<?php } else { ?>
-	<span class="bonjour">Bonjour <?php echo $_SESSION['id'];?> !</span>
-	
-	<a class="menu_button pos_right" href="disconnect.php">DECONNEXION</a>
-	<a class="menu_button pos_right" href="my_account.php">MON COMPTE</a>
-		<?php } ?>
+	<div></div>
+
+	<div>
+		<?php if (!isset($_SESSION['log_status']) || $_SESSION['log_status'] == 0){
+		 ?>
+		<a class="menu_button" href="login.php">CONNEXION</a>
+		<?php } else {
+		 ?>
+		<a class="menu_button" href="my_account.php">MON COMPTE</a>
+		<?php } 
+		?>
+	</div>
+
+
+	<div>
+		<?php if (!isset($_SESSION['log_status']) || $_SESSION['log_status'] == 0){ 
+			?>
+		<a class="menu_button" style="margin-right: 1em;" href="register.php">INSCRIPTION</a>
+		<?php } else { 
+			?>
+		<a class="menu_button" style="margin-right: 1em;" href="disconnect.php">DECONNEXION</a>
+		<?php } 
+		?>
+	</div>
 
 </div>

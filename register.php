@@ -6,7 +6,8 @@
 	  header("Location: index.php");
 ?>
 
-<?php  
+<?php 
+  $title = "Registration";
   require_once("includes/header.php");
   //fontions de verification des donnees de formulaire
   require_once("libft_php/data_validity.php");
