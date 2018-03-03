@@ -4,22 +4,47 @@
   require_once("includes/header.php");
 ?>
 
+<?php
+//récupération des photos a afficher sur la droite
+?>
+
 <div class="grid-4 has-gutter main" >
 	<div class="video_interface">
 		<video id="video">Browser blocked video</video><br>
+		<div style="margin-top: 1em;">
+			<a class="button_photo" onclick="take_photo();">Prendre la photos</a>
+		</div>
 	</div>
 
 	<div class="photos_interface">
 		<canvas id="photo"></canvas>
-	</div>
-	<div class="row-2 col-2-small-1">
+		<div style="margin-top: 1em;">
+			<a href="" id="button_download" onclick="dl_photo();">Publier !</a>	
+		</div>
 		
 	</div>
-	<div >
-		<a class="button_photo" onclick="take_photo();">Prendre la photo</a>
-	</div>
-	<div >
-		<a href="" id="button_download" onclick="dl_photo();">Télecharger</a>
+	<div class="col-2 ">
+		<div class="grid-3-small-2 has-gutter"  margin: auto;">
+			<div class="mini_galerie">
+				<img  href="" />
+			</div>
+			<div class="mini_galerie">
+				<img  href="" />
+			</div>
+			<div class="mini_galerie">
+				<img  href="" />
+			</div>
+			<div class="mini_galerie">
+				<img  href="" />
+			</div>
+			<div class="mini_galerie">
+				<img  href="" />
+			</div>
+			<div class="mini_galerie">
+				<img  href="" />
+			</div>
+		</div>
+		<?php ?>
 	</div>
 	
 </div>
@@ -40,15 +65,18 @@
 			context.drawImage(video, 0, 0);
 		}
 
-		function dl_photo()
-		{
-			var photo_url = photo.toDataURL();
-				alert(test);
-			button_download.href = photo_url;
-			//Permet de telecharger l'url contenu dans href de l'id photo
-			// button_download.download = "test.png";
 
-		}
+
+
+// Fonction permettant a l'utilisateur de download sa photo
+		// function dl_photo()
+		// {
+		// 	var photo_url = photo.toDataURL();
+		// 		alert(test);
+		// 	button_download.href = photo_url;
+		// 	//Permet de telecharger l'url contenu dans href de l'id photo
+		// 	// button_download.download = "test.png";
+		// }
 
 	 </script>
 

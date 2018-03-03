@@ -137,7 +137,7 @@ a
 {
 	height: 2em;
     width: 10em;
-    margin-left: 7em;
+    margin-left: 8em;
     white-space: nowrap;
     background-color: #e8e3e3;
     padding: 3 20 3 20;
@@ -158,22 +158,29 @@ a
 {
 	width: 22em;
     height: 265px;
-    border: 2px solid black;
     background-color: #a7ada7;
-    margin-top: -1px;
 }
 
 #button_download
 {
     height: 2em;
     width: 10em;
-    margin-left: 7em;
+    margin-left: 8em;
     white-space: nowrap;
     background-color: #e8e3e3;
     padding: 3 20 3 20;
     border: grey solid 1px;
     border-radius: 4px;
     color: black;
+}
+
+.mini_galerie
+{
+	/*margin-top: 1em;*/
+	width: 160px;
+    height: 160px;
+	background-color: grey;
+	/*margin: 0 auto 2em auto;*/
 }
 
 
