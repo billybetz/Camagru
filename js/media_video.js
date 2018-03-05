@@ -15,7 +15,7 @@
 	 }
 	 else
 	 {
-	 	alert("getMedia not supported");
+	 	alert("vidéo : getMedia not supported on this browser");
 	 }
 
  	function handle_video(stream) 
@@ -33,7 +33,7 @@
 
 	function video_error(error)
 	{
- 		alert("problem with the video" + error);
+ 		alert("vidéo : " + error);
  	}
 }
-)();
+)()

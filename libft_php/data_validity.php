@@ -13,8 +13,8 @@ function check_login($login)
 {
 	if ($login == "")
 		return ("Champ obligatoire");
-	if (strlen($login) < 5)
-		return ("L'identifiant doit faire minimum 5 caracteres");
+	if (strlen($login) < 5 || strlen($login) > 12)
+		return ("L'identifiant doit faire entre 5 et 12 caractères");
 	if (ctype_alnum($login) == FALSE)
 		return ("L'identifiant ne peux contenir que des caractères alphanumérique");
 	if (ft_str_have_digit($login) == FALSE)
@@ -24,7 +24,7 @@ function check_login($login)
 
 function check_email($email)
 {
-	if (count($login, '@') != 1)
+	if (mb_substr_count($email, '@') != 1)
 		return ("adresse mail invalide");
 	return("");
 }

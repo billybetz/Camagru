@@ -33,6 +33,12 @@
 			{
 				$_SESSION['log_status'] = $ret['rank'];
 				$_SESSION['id'] = $login;
+		?>
+			<script>
+				window.location.replace("index.php");
+			</script>
+				
+		<?php
 			}
 			else
 				$error = "incorrect_data";
