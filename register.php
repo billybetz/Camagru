@@ -23,13 +23,13 @@
 	if (isset($_POST['submit']) && $_POST["submit"] == "OK")
 	{
 		$login = $_POST["id"];
-		$mdp = $_POST["mdp"];
-		$mdp2 = $_POST["mdp2"];
+		$mdp = hash('whirlpool', $_POST["mdp"]);
+		$mdp2 = hash('whirlpool', $_POST["mdp2"]);
 		$email = $_POST["email"];
 		$errors = array();
 		
-		$errors['login'] = check_login($login);
-		$errors['email'] = check_email($email);
+		$errors['login'] = check_login($login, $bdd);
+		$errors['email'] = check_email($email, $bdd);
 		$errors['mdp'] = check_mdp($mdp);
 		$errors['mdp2'] = check_mdp2($mdp, $mdp2);
 		if ($errors['login'] == "" && $errors['email'] == "" && $errors['mdp'] == "")

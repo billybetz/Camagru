@@ -29,7 +29,7 @@
 			$sql = 'SELECT * FROM camagru.users WHERE pseudo = "'.$login.'";';
 			$ret = ft_exe_sql_rqt("select user", $bdd, $sql);
 			$ret = mysqli_fetch_array($ret);
-			if ($ret && $ret['passwd'] == $mdp)
+			if ($ret && $ret['passwd'] == hash('whirlpool', $mdp))
 			{
 				$_SESSION['log_status'] = $ret['rank'];
 				$_SESSION['id'] = $login;

@@ -2,11 +2,23 @@
   $title = "Accueil";
   require_once("config/setup.php");
   require_once("includes/header.php");
+  require_once("libft_php/save_image.php");
 ?>
 
 <?php
 	$ext_accepted = array('jpg', 'jpeg', 'png', 'gif');
 	$picture_dir = "./img/client_photos/";
+
+	if (isset($_POST['upload_photo']) && $_POST['upload_photo'] == "Importer")
+	{
+		// on insère la photo dans le cadre
+		echo "test";
+	}
+
+	if (isset($_POST['publish']) && $_POST['publish'] == "Publier")
+	{
+
+	}
 ?>
 
 <div class="grid-3 has-gutter main" >
@@ -18,68 +30,58 @@
 		</div>
 	</div>
 
+
+
 	<div class="photos_interface">
 		<canvas id="photo"></canvas>
 		<div style="margin-top: 1em;">
 			<form method="post" action="">
-			 	<input type="file" name="photo_upload" id="monfichier" /><br/>
-			 	<input type="submit" name="submit" value="Envoyer" />
+			 	<input type="file" name="photo_upload" id="monfichier" accept=".jpg, .jpeg, .png, .gif" /><br/>	
+			 	<input type="submit" name="upload_photo" value="Importer" />
 			</form>
 
 			<!-- <a href="" id="button_download" onclick="dl_photo();">Publier !</a>	 -->
 		</div>
-		
 	</div>
+
+
+
 	<div class="col-1 ">
-		<div class="grid-3-small-2 has-gutter" style="overflow: scroll; max-height: 500px;">
+		<?php 
 
-			<?php 
+			if (isset($_SESSION['id']))
+			{
+				$sql = 'SELECT name
+				FROM camagru.pictures
+				INNER JOIN users ON pictures.user_id = users.id;
+				WHERE users.pseudo = "'.$_SESSION['id'].'"';
+		?>
+
+
+				<div class="grid-3-small-2 has-gutter" style="overflow: scroll; max-height: 500px;">
+		<?php
 				// requete de récupération des image a afficher sur l'index
-				// $sql = 'SELECT * FROM camagru.pictures pic JOIN camagru.users ON pictures.user_id=users.id;';
-			?>
+				
 
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
+				$ret = ft_exe_sql_rqt("select pictures of current user", $bdd, $sql);
 
 
-
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
-			<div class="mini_galerie">
-				<img  href="" />
-			</div>
+				foreach ($ret as $pic_name)
+				{
+		?>
+					<div class="mini_galerie">
+		<?php 
+					echo'<img  src="'.$picture_dir.$pic_name.'" alt="" />'
+		?>
+					</div>
+		<?php 
+				 	}
+					
+				}
+		?>
+				
 
 		</div>
-		<?php ?>
 	</div>
 	
 </div>
@@ -98,11 +100,6 @@
 			photo.width = video.videoWidth;
 			photo.height = video.videoHeight;
 			context.drawImage(video, 0, 0);
-		}
-
-		function publish_photo()
-		{
-
 		}
 
 

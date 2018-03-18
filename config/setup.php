@@ -24,7 +24,7 @@ $sql = "
     `id` INT NOT NULL AUTO_INCREMENT COMMENT 'numéro de l\'utilisateur' ,
     `pseudo` VARCHAR(64) NOT NULL COMMENT 'pseudo de l\'utilisateur' ,
     `email` VARCHAR(64) NOT NULL COMMENT 'email de l\'utilisateur' ,
-    `passwd` VARCHAR(64) NOT NULL COMMENT 'mot de passe de l\'utilisateur' ,
+    `passwd` VARCHAR(1024) NOT NULL COMMENT 'mot de passe de l\'utilisateur' ,
     `is_active` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'bool indiquant si le compte a ete activé ou non' ,
     `get_notif` BOOLEAN NOT NULL DEFAULT TRUE COMMENT 'bool indiquant si l\'utilisateur souhaite recevoir des notifications ou non' ,
     `rank` INT NOT NULL DEFAULT '1' COMMENT 'rang de l\'utilisateur (1 basic, 2 actif, 3 admin)' , PRIMARY KEY (`id`)
@@ -34,7 +34,7 @@ ft_exe_sql_rqt("create users table", $bdd, $sql);
 
 $sql = "
   CREATE TABLE if NOT EXISTS `camagru`.`pictures` 
-  ( `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id de la photo' , `user_id` INT NOT NULL COMMENT 'utilsateur a qui appartient la photo' , `picture_name` VARCHAR(1024) NOT NULL COMMENT 'nom de la photo permettant de retrouver son emplacement' , `timestamp` BIGINT(20) NOT NULL COMMENT 'date de publication de la photo (precision ms)' , PRIMARY KEY (`id`)
+  ( `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id de la photo' , `user_id` INT NOT NULL COMMENT 'utilsateur a qui appartient la photo' , `name` VARCHAR(1024) NOT NULL COMMENT 'nom de la photo permettant de retrouver son emplacement' , `timestamp` BIGINT(20) NOT NULL COMMENT 'date de publication de la photo (precision ms)' , PRIMARY KEY (`id`)
   ) ENGINE = InnoDB;
   ";
 ft_exe_sql_rqt("create photos table", $bdd, $sql);
