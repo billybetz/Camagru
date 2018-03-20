@@ -36,12 +36,17 @@
 		{
 			$sql = 	'
 			INSERT INTO camagru.Users (pseudo, email, passwd, rank) 
-			VALUES ("'.$login.'", "'.$email.'", "'.$mdp.'", 1);
-					';
-			
+			VALUES ("'.$login.'", "'.$email.'", "'.$mdp.'", 1);';
 			$ret = ft_exe_sql_rqt("add user", $bdd, $sql);
 			if (!$ret)
-				echo ("Erreur lors de l'ajout de l'utilisateur\n");
+				$_SESSION['reg_success'] = -1;
+			else
+			{
+				$_SESSION['reg_success'] = 1;
+			}
+			<script>
+				window.location.replace("login.php");
+			</script>
 			
 		}
 	}

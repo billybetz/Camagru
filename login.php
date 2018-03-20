@@ -35,7 +35,7 @@
 				$_SESSION['id'] = $login;
 		?>
 			<script>
-				window.location.replace("index.php");
+				window.location.replace("galerie.php");
 			</script>
 				
 		<?php
@@ -51,7 +51,23 @@
 	<div class="log_reg">
 		<div class="log-text1">CONNEXION</div>
 
-		<form class="log-formulaire" method="POST" action=""> 
+		<form class="log-formulaire" method="POST" action="">
+			
+				<?php 
+					if (isset($_SESSION['reg_success']))
+					{
+						if ($_SESSION['reg_success'] == 1){		
+				?> 
+			<label>Un email de confirmation de compte vous a été envoyé.</label>
+				<?php
+					}if ($_SESSION['reg_success'] == -1){
+						
+				?>
+			<label>Erreur lors de votre inscription, contactez un administrateur.</label>
+				<?php
+					}
+				}
+				?>
 			<label>*Identifiant : </label> <br> <input type="text" name="id" value="<?php if (isset($login)){echo$login;}?>" />
 			
 			<br>
@@ -62,11 +78,12 @@
 			</div>
 			<button class="log-sub" type="submit" name="submit" value="OK" >Se connecter</button>
 			<br>
-			<?php if (isset($error) && $error == "data_missing") {?>
+				<?php if (isset($error) && $error == "data_missing") {?>
 			<span class="err_log">* : Champs obligatoire</span>
-			<?php }else if (isset($error) && $error == "incorrect_data"){?>
+				<?php }else if (isset($error) && $error == "incorrect_data"){?>
 			<span class="err_log">Identifiant ou mot de passe incorrect</span>
-			<?php } ?>
+				<?php } ?>
+
 		</form>
 	
   </div>

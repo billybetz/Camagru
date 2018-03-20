@@ -2,7 +2,7 @@
 require_once("libft_php/sql_rqt.php");
 //mysql server data
 $servername = "localhost";
-$user = "billy";
+$user = "root";
 $passwd = "";
 
 // connect to DATABASE

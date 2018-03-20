@@ -6,7 +6,7 @@
 <div class="grid-9 has-gutter menu">
 	<div style="margin: auto;">
 		<!-- <a href="." class ="index_button pos_left"> -->
-			<a class=" menu_button" style="margin-left: 1em;" href=".">CAMAGRU</a>
+			<a class=" menu_button" style="margin-left: 1em;" href="montage.php">MONTAGE</a>
 		<!-- <img src="img/acceuil.png" alt="acceuil" width="49" height="49"/> -->
 		<!-- </a> -->
 	</div>
