@@ -10,7 +10,7 @@
 	<head>
 		<meta charset="utf-8">
 		<!-- feuille de style perso -->
-		<link rel="stylesheet " href="css/style.css">
+		<link rel="stylesheet " href="css/style.css?t=<? echo time(); ?>">
 		<!-- feuille de style de knacss pour leur syteme de grille  -->
 		<link rel="stylesheet " href="css/grillade_knacss.css">
 		<title><?php echo $title?></title>

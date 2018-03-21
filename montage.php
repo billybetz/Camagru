@@ -33,6 +33,10 @@
 
 <!-- CORP DE LA PAGE -->
 
+<div class="filter_container">
+	<a class="filter_image"> TEST1 </a>
+</div>
+
 <div class="grid-3 has-gutter main" >
 
 	<div class="video_interface">
@@ -50,8 +54,7 @@
 			<form method="post" action="">
 				<!-- A rajouter dans la balise input type file pour n'autoriser qu'un certain type de fichier -->
 				<!-- accept=".jpg, .jpeg, .png, .gif" -->
-			 	<input type="file" name="photo_upload" id="monfichier" /> 
-			 	<button type="button" onclick="load_pic()">Importer</button>
+			 	<input type="file" name="photo_upload" id="monfichier" onchange="insert_imported_image();" /> 
 			 	<br/>
 
 			 <!-- TODO : assigner la variable $sessions['pic_is_valid'] pour faire apparaitre le bouton publier -->
@@ -67,7 +70,7 @@
 
 
 
-	<div class="col-1 ">
+	<div class="">
 
 		<!-- AFFICHAGE DES PHOTOS DU USER -->
 		<?php 
@@ -123,15 +126,39 @@
 			context.drawImage(video, 0, 0);
 		}
 
+		function insert_imported_image()
+		{
+			alert("ok");
+			var file    = document.querySelector('input[type=file]').files[0]	;
+			alert(file);
+			var reader  = new FileReader();
+
+			reader.addEventListener("load", function () {
+    			photo.src = reader.result;
+    		}, false);
+
+  			if (file) {
+    		reader.readAsDataURL(file);
+  		}
+
+			// alert("ok");
+			// image = new Image();
+			// image.src = image_imported;
+
+			// photo.width = video.videoWidth;
+			// photo.height = video.videoHeight;
+			// photo.drawImage(image, 0, 0);
+		}
+
 
 // Fonction permettant a l'utilisateur de download sa photo
 		// function dl_photo()
 		// {
-		// 	var photo_url = photo.toDataURL();
-		// 		alert(test);
-		// 	button_download.href = photo_url;
-		// 	//Permet de telecharger l'url contenu dans href de l'id photo
-		// 	// button_download.download = "test.png";
+			// var photo_url = photo.toDataURL();
+				// alert(test);
+			// button_download.href = photo_url;
+			//Permet de telecharger l'url contenu dans href de l'id photo
+			// button_download.download = "test.png";
 		// }
 
 </script>

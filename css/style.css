@@ -111,9 +111,27 @@ hr{
 	color: #e9ebee;
 }
 
+/*-_-_-_-_- montage.php -_-_-_-_-*/
 
+.filter_container
+{
+  overflow: auto;  
+  height: 9em;
+  margin-top: 2em;
+  margin-left: 20%;
+  margin-right: 20%;
+  white-space: nowrap;
+  text-align: center;
+}
 
-/*-_-_-_-_- index.php -_-_-_-_-*/
+.filter_image
+{
+  display: inline-block;
+  border:  black solid 1px;
+  height: 80%;
+  width: 7em;
+  margin-left: auto;
+}
 
 .video_interface
 {
