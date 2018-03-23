@@ -44,10 +44,11 @@
 			{
 				$_SESSION['reg_success'] = 1;
 			}
+			?>
 			<script>
 				window.location.replace("login.php");
 			</script>
-			
+		<?php
 		}
 	}
 ?>

@@ -42,6 +42,12 @@ hr{
     border: none;*/
 }
 
+img
+{
+  border: none;
+  text-decoration:none; 
+}
+
 /* classes sur toutes les pages */
 
 .main
@@ -116,8 +122,10 @@ hr{
 
 .filter_container
 {
-    overflow: auto;
-    height: 9em;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 10em;
     margin-left: 20%;
     margin-right: 20%;
     text-align: center;
@@ -130,9 +138,9 @@ hr{
 {
     display: inline-block;
     border: black solid 1px;
-    height: 112px;
-    width: 112px;
-        margin-top: 15px;
+    height: 7em;
+    width: 7em;
+    margin-top: 15px;
 }
 
 .button_filter
@@ -175,12 +183,27 @@ hr{
 }
 
 
-#photo
+#photo_cam
 {
 	width: 22em;
   height: 265px;
   background-color: #efefef;
   border: #88ca71 solid 1px;
+  position: absolute;
+}
+
+#photo_imported
+{
+  width: 22em;
+  height: 265px;
+  background-color: #efefef;
+  border: #88ca71 solid 1px;
+  position: absolute;
+}
+
+#monfichier
+{
+  margin-top: 21em;
 }
 
 #button_download
@@ -279,6 +302,20 @@ hr{
 
 /*-_-_-_-_- my_account.php -_-_-_-_-*/
 
+.feuille_gestion_compte
+{
+  vertical-align: text-top;
+  text-align: center;
+  border-radius: 20px;
+  width: 600px;
+  /*height: 30em;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+}
+
 .setting_name
 {
 	margin-left: 1em;
@@ -289,6 +326,18 @@ hr{
 .setting_data
 {
 	color: grey;
+}
+
+.add_button
+{
+  width: 6em; 
+  margin-left: 2em;
+}
+
+.delete_button
+{
+  width: 6em; 
+  margin-left: 2em;
 }
 
 /*-_-_-_-_- footer.php -_-_-_-_-*/

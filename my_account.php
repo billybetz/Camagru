@@ -29,18 +29,47 @@
 
 
 <div class="main" >
-	<div class="log_reg">
+
+<?php
+
+?>
+	<div class="feuille_gestion_compte">
+
+		<div class="grid-5" style="padding-bottom: 50px;">
+			<div class="col-5 log-text1">Administration</div>
+		</div>
+		<hr/>
+
+		<div class="grid-5">
+			<div class="setting_name">Nom du filtre</div>
+			<input class="col-2 setting_data"></input>
+			<button href="" class="add_button" >Ajouter</button>
+			<button href="" class="delete_button">Supprimer</button>
+		</div>
+		<hr/>
+
+		<div class="grid-4">
+			<div class=" setting_name">Nom de l'utilisateur</div>
+			<input class="col-2"></input>
+			<button href="" class="delete_button">Supprimer</button>
+		</div>
+		<hr/>
+		
+	</div>
+
+	<div class="feuille_gestion_compte">
+
 		<div class="grid-5" style="padding-bottom: 50px;">
 			<div class="col-5 log-text1">Gestion de compte</div>
 		</div>
 		<hr/>
+
 		<div class="grid-5">		
 			<div class="setting_name">nom de compte</div>
 			<div class="col-3 setting_data"><?php echo $pseudo; ?></div>
 			<a href="" style="display: block;">Modifier</a>
 		</div>
 		<hr/>
-		
 		
 		<div class="grid-5">
 			<div class="setting_name">adresse email</div>
@@ -55,7 +84,11 @@
 			<a href="" style="display: block;">Modifier</a>
 		</div>
 		<hr/>
-	
+
+		
+	</div>
+
+
 </div>
 
 

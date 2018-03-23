@@ -1,8 +1,11 @@
 <?php
-	$servername = "localhost";
-	$user = "root";
-	$passwd = "";
-	$bdd;
+	require_once("config/database.php");
+
+	//mysql server data
+	$servername = $DB_SERVERNAME;	
+	$user = $DB_USER;
+	$passwd = $DB_PASSWORD;
+	
 	$bdd = mysqli_connect($servername, $user, $passwd);
 	if ($bdd == FALSE)
 	{
