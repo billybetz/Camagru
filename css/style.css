@@ -140,8 +140,7 @@ img
     border: black solid 1px;
     height: 112px;
     width: 112px;
-    margin-top: 15px;
-    margin-left: 6px;
+    margin: 16px 7px 0px 7px;
 }
 
 .filter_image:hover
@@ -347,6 +346,12 @@ img
 {
   width: 7em; 
   margin-left: 1em;
+  white-space:nowrap;
+}
+
+.button3
+{
+  width: auto;
   white-space:nowrap;
 }
 

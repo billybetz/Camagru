@@ -31,6 +31,16 @@
 
 	//variables de formulaire de gestion des filtres [admin]
 	$error_filter = "";
+	$filters_available = array();
+	$dir = opendir($filter_dir);
+	// creation du tableau contenant tous les fichier du dossier filtre.
+	while ($file_name = readdir($dir))
+	{
+		$pos = strrpos($file_name, ".");
+		// verifie que le fichier et différent de . et .. et qu'il a la bonne extension.
+		if ($file_name != "." && $file_name != ".." && !strcmp(substr($file_name, $pos), $filter_ext))
+		array_push($filters_available, $file_name);
+	}
 	if (isset($_POST['filter_name']))
 		$filter_name = $_POST['filter_name'];
 
@@ -41,20 +51,52 @@
 	// $up_u = $_POST['upgrade_user'];
 	// $del_u = $POST['del_user'];
 
-	// Block d'ajout de filtre en bdd. 
+	// Block d'ajout de filtre en bdd.
+
+	if (isset($_POST['add_all_filters']) && $_POST['add_all_filters'] == "ok")
+	{
+		foreach ($filters_available as $file_name) 
+		{
+			$sql = 'SELECT COUNT(*) 
+			AS quantite
+			FROM camagru.filters
+			WHERE name = "'.$file_name.'";';
+
+			$ret = ft_exe_sql_rqt("count filter with name", $bdd, $sql);
+			$data = mysqli_fetch_array($ret);
+			if ($data['quantite'] == 0)
+			{
+				$sql = ' INSERT INTO camagru.filters (name)
+					VALUES ("'.$file_name.'");';
+
+				$ret = ft_exe_sql_rqt("add filter", $bdd, $sql);
+				if (!$ret)
+					$error_filter = "erreur avec une des requetes sql";
+			}
+		}
+		if ($error_filter == "")
+		{
+			?>
+				<script>
+					alert("Tous les filtres disponibles ont été ajoutés.");
+				</script>
+			<?php
+		}
+	}
+
 	if (isset($_POST['add_filter']) && $_POST['add_filter'] == "ok")
 	{
 		if ($filter_name == "")
 			$error_filter = "Nom de filtre invalide.";
-		// else if (!file_exists($filter_dir + $filter_name))
-			// $error_filter = "le filtre \"".$filter_name."\" est introuvable.";
+		else if (!file_exists($filter_dir.$filter_name))
+			$error_filter = "le filtre \"".$filter_name."\" est introuvable.";
 		else
 		{
 			// verification si le filtre n'existe pas deja en bdd
 			$sql = 'SELECT COUNT(*) 
-			AS quantite
-			FROM camagru.filters
-			WHERE name = "'.$filter_name.'";';
+				AS quantite
+				FROM camagru.filters
+				WHERE name = "'.$filter_name.'";';
 
 			$ret = ft_exe_sql_rqt("count filter with name", $bdd, $sql);
 			$data = mysqli_fetch_array($ret);
@@ -64,7 +106,8 @@
 			{
 				// On ajoute le nom du filtre en bdd
 				$sql = ' INSERT INTO camagru.filters (name)
-				VALUES ("'.$filter_name.'");';
+					VALUES ("'.$filter_name.'");';
+
 				$ret = ft_exe_sql_rqt("add filter", $bdd, $sql);
 				if (!$ret)
 					$error_filter = "erreur avec la requete sql";
@@ -87,9 +130,10 @@
 		else
 		{
 			$sql = 'SELECT COUNT(*)
-			AS quantite
-			FROM camagru.filters
-			WHERE name = "'.$filter_name.'";';
+				AS quantite
+				FROM camagru.filters
+				WHERE name = "'.$filter_name.'";';
+
 			$ret = ft_exe_sql_rqt("count filter with name", $bdd, $sql);
 			if ($ret)
 			{
@@ -99,7 +143,8 @@
 				else
 				{
 					$sql = ' DELETE FROM camagru.filters 
-					WHERE name = "'.$filter_name.'";';
+						WHERE name = "'.$filter_name.'";';
+
 					$ret = ft_exe_sql_rqt("delete filter", $bdd, $sql);
 					if (!$ret)
 						$error_filter = "erreur avec la requete sql.";
@@ -125,8 +170,9 @@
 		else
 		{
 			$sql = 'SELECT *
-			FROM camagru.users
-			WHERE pseudo = "'.$user_name.'";';
+				FROM camagru.users
+				WHERE pseudo = "'.$user_name.'";';
+
 			$ret = ft_exe_sql_rqt("select user with name", $bdd, $sql);
 			if ($ret)
 			{
@@ -138,8 +184,9 @@
 				else
 				{
 					$sql = ' UPDATE camagru.users 
-					SET rank = "3"	
-					WHERE pseudo = "'.$user_name.'";';
+						SET rank = "3"	
+						WHERE pseudo = "'.$user_name.'";';
+
 					$ret = ft_exe_sql_rqt("upgrade user", $bdd, $sql);
 					if (!$ret)
 						$error_user = "erreur avec la requete sql.";
@@ -215,10 +262,18 @@
 		<hr/>
 		<form method="POST">
 			<div class="grid-5">
-				<div class="setting_name">Nom du filtre</div>	
-					<input name="filter_name" class="col-2 setting_data"></input>
+				<div class="setting_name">Nom du filtre</div>
+					<select name="filter_name" class="col-2 setting_data" size="1">
+						<?php foreach ($filters_available as &$file)
+						{
+							echo('<option>'.$file.'</option>');
+						} ?>
+					</select>
+					<!-- <input name="filter_name" class="col-2 setting_data"></input> -->
 					<button type="submit" name="add_filter" value="ok" class="add_button" >Ajouter</button>
 					<button type="submit" name="del_filter" value="ok" class="delete_button">Supprimer</button>
+					<div col-4></div>
+					<button type="submit" name="add_all_filters" value="ok" class="button3" >Ajouter tous les filtres disponibles.</button>
 			</div>
 		</form>
 			<?php 

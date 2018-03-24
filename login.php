@@ -21,9 +21,9 @@
 	{
 		$login = $_POST["id"];
 		$mdp = $_POST["mdp"];
-		$error;
+		$error = "";
 		if ($login == "" || $mdp == "")
-			$error = "data_missing";
+			$error = "* : Champs obligatoires";
 		else
 		{
 			$sql = 'SELECT * FROM camagru.users WHERE pseudo = "'.$login.'";';
@@ -31,6 +31,8 @@
 			$ret = mysqli_fetch_array($ret);
 			if ($ret && $ret['passwd'] == hash('whirlpool', $mdp))
 			{
+				if ($ret['rank'] == 1)
+					$error = "Veuillez valider votre compte.";
 				$_SESSION['log_status'] = $ret['rank'];
 				$_SESSION['id'] = $login;
 		?>
@@ -41,7 +43,7 @@
 		<?php
 			}
 			else
-				$error = "incorrect_data";
+				$error = "Nom de compte ou mot de passe incorrect";
 		}
 	}
 ?>
@@ -56,17 +58,21 @@
 				<?php 
 					if (isset($_SESSION['reg_success']))
 					{
-						if ($_SESSION['reg_success'] == 1){		
+						if ($_SESSION['reg_success'] == 1)
+						{		
 				?> 
-			<label>Un email de confirmation de compte vous a été envoyé.</label>
+							<label style="color: #a15143;">Un email de confirmation de compte vous a été envoyé.</label><br><br>
 				<?php
-					}if ($_SESSION['reg_success'] == -1){
+						}
+						if ($_SESSION['reg_success'] == -1)
+						{
 						
 				?>
-			<label>Erreur lors de votre inscription, contactez un administrateur.</label>
+							<label>Erreur lors de votre inscription, contactez un administrateur.</label>
 				<?php
+						}
 					}
-				}
+					$_SESSION['reg_success'] = 0;
 				?>
 			<label>*Identifiant : </label> <br> <input type="text" name="id" value="<?php if (isset($login)){echo$login;}?>" />
 			
@@ -78,10 +84,8 @@
 			</div>
 			<button class="log-sub" type="submit" name="submit" value="OK" >Se connecter</button>
 			<br>
-				<?php if (isset($error) && $error == "data_missing") {?>
-			<span class="err_log">* : Champs obligatoire</span>
-				<?php }else if (isset($error) && $error == "incorrect_data"){?>
-			<span class="err_log">Identifiant ou mot de passe incorrect</span>
+				<?php if (isset($error) && $error != "") {?>
+			<span class="err_log"><?php echo $error ?></span>
 				<?php } ?>
 
 		</form>
