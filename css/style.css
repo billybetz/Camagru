@@ -138,9 +138,17 @@ img
 {
     display: inline-block;
     border: black solid 1px;
-    height: 7em;
-    width: 7em;
+    height: 112px;
+    width: 112px;
     margin-top: 15px;
+    margin-left: 6px;
+}
+
+.filter_image:hover
+{
+  opacity:0.9;
+  background-color: #dedede;
+  cursor: pointer;
 }
 
 .button_filter
@@ -330,14 +338,23 @@ img
 
 .add_button
 {
-  width: 6em; 
-  margin-left: 2em;
+  width: 7em; 
+  margin-left: 1em;
+  white-space:nowrap;
 }
 
 .delete_button
 {
-  width: 6em; 
-  margin-left: 2em;
+  width: 7em; 
+  margin-left: 1em;
+  white-space:nowrap;
+}
+
+.err_mess
+{
+  color: red;
+  font-size: 12px;
+  margin: -7px;
 }
 
 /*-_-_-_-_- footer.php -_-_-_-_-*/

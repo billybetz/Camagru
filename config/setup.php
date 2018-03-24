@@ -76,11 +76,14 @@ CREATE TABLE `camagru`.`filters` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `name`
 ft_exe_sql_rqt("create likes table", $bdd, $sql);
 
 
-// création du user
+// création du user admin
+$admin_id = "root1234admin";
+$admin_pass = hash('whirlpool', 'root1');
+$admin_mail = "billy0196@gmail.com";
 $sql = "
-	INSERT INTO camagru.Users (pseudo, email, rank) 
-	VALUES ('root', 'test', 2);
+	INSERT INTO camagru.Users (pseudo, passwd, email, rank) 
+	VALUES ('".$admin_id."', '".$admin_pass."', '".$admin_mail."', 3);
 	";
-ft_exe_sql_rqt("insert billy", $bdd, $sql);
+ft_exe_sql_rqt("insert root", $bdd, $sql);
 
-  ?>
+?>

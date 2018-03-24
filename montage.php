@@ -9,9 +9,12 @@
 
 <?php
   $title = "Accueil";
+  // lance la requete de creation de la bdd si elle n'existe pas.
   require_once("config/setup.php");
   require_once("includes/header.php");
-  require_once("libft_php/save_image.php");
+
+  // contient les variables global utilisés comme les paths relatif.
+  require_once("includes/globals.php");
 ?>
 
 <?php
@@ -36,11 +39,11 @@
 
 <!-- Partie des filtres -->
 <div class="filter_container">
-	<img class="filter_image" id="test1" onclick="add_filter(this.src);">  </img>
+<!-- 	<img class="filter_image" id="test1" onclick="add_filter(this.src);">  </img>
 	<img class="filter_image">  </img>
 	<img class="filter_image">  </img>
 	<img class="filter_image">  </img>
-	<img class="filter_image">  </img>
+	<img class="filter_image">  </img> -->
 
 	<?php 
 
@@ -157,13 +160,30 @@
 
 	function take_photo()
 	{
+		// replace la div canvas en premier plan et remet la partie
+		// importation a null.
+		photo_imported.style.visibility = "hidden";
+		photo_cam.style.visibility = "visible";
+		monfichier.value = "";
+
+		// dessine la video dans le canvas
 		photo_cam.width = video.videoWidth;
 		photo_cam.height = video.videoHeight;
 		context.drawImage(video, 0, 0);
-		photo_imported.style.visibility = "hidden";
-		photo_cam.style.visibility = "visible";
-		monfichier.value = ""; 
+
+		//dessine le filtre sélectionné.
+		
+		 
 	}
+
+	// fonction pour ajouter un filtre sur la partie video.
+	// n'est pas disponible avec l'importation de la photo.
+	function add_filter(filter)
+	{
+		alert('vous avez cliqué sur ' + filter);
+	}
+
+
 
 	// fonction appellé a l'ajout d'une photo de l'utilisateur
 	function preview_image() 
@@ -185,11 +205,7 @@
   		}
 	}
 
-	function add_filter(filter)
-	{
-		alert('vous avez cliqué sur ' + filter);
-	}
-
+	
 </script>
 
 <!-- INCLUSION JS-->
