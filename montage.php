@@ -18,9 +18,6 @@
 ?>
 
 <?php
-	$ext_accepted = array('jpg', 'jpeg', 'png', 'gif');
-	$picture_dir = "./img/client_photos/";
-	$filter_dir = "./img/filters/";
 
 	if (isset($_POST['photo_upload']) && $_POST['photo_upload'] != NULL)
 	{
@@ -73,10 +70,11 @@
 <div class="grid-3 has-gutter main" >
 
 	<div class="video_interface">
-		<video id="video">Browser blocked video</video><br>
+		<video id="video" onclick="change_filter_pos(event);">Browser blocked video</video><br>
 		<div style="margin-top: 1em;">
-			<a class="button_photo" onclick="take_photo();">Prendre la photos</a>
+			<a src="#" class="button_photo" onclick="take_photo();">Prendre la photos</a>
 		</div>
+		
 	</div>
 
 
@@ -145,21 +143,58 @@
 		?>
 			</div>
 	</div>
-
-	
 </div>
 
+<img id="filter_img" onclick="change_filter_pos(event);"></div>
 <script> 
 	var photo_cam = document.getElementById("photo_cam");
 	var photo_imported = document.getElementById("photo_imported");
 	var video = document.getElementById("video");
 	var context = photo_cam.getContext("2d");
 	var monfichier = document.getElementById("monfichier");
-
 	var button_download = document.getElementById("button_download");
+	var filter_img = document.getElementById("filter_img");	
+
+	var filter_width = 150;
+	var filter_height = 150;
+
+	var left_position_cam = video.offsetLeft;
+	var top_position_cam = video.offsetTop;
+
+	var width_cam = video.offsetWidth;
+	var height_cam = video.offsetHeight;
+	
+
+
+	// fonction pour ajouter un filtre sur la partie video.
+	// n'est pas disponible avec l'importation de la photo.
+	function add_filter(filter)
+	{
+		filter_img.style.height = filter_height;
+		filter_img.style.width = filter_width;
+		filter_img.src = filter;
+		filter_img.style.position = "absolute";
+		filter_img.style.top = top_position_cam + height_cam / 6;
+		filter_img.style.left = left_position_cam + width_cam / 3;
+	}
+	
+	function change_filter_pos(event)
+	{
+		var mouse_pos_x = event.clientX;
+		var mouse_pos_y = event.clientY;
+
+		if (mouse_pos_y > top_position_cam && mouse_pos_y < top_position_cam + height_cam && mouse_pos_x > left_position_cam && mouse_pos_x < left_position_cam + width_cam)
+		{
+			// placement du millieu du filtre sur la souris
+			filter_img.style.top = mouse_pos_y - filter_height / 2 ;
+			filter_img.style.left = mouse_pos_x - filter_width / 2;
+		}
+	}
 
 	function take_photo()
 	{
+		var relative_filter_pos_x = filter_img.offsetLeft - left_position_cam;
+		var relative_filter_pos_y = filter_img.offsetTop - top_position_cam;
 		// replace la div canvas en premier plan et remet la partie
 		// importation a null.
 		photo_imported.style.visibility = "hidden";
@@ -167,27 +202,21 @@
 		monfichier.value = "";
 
 		// dessine la video dans le canvas
+		video.videoWidth = video.offsetWidth
 		photo_cam.width = video.videoWidth;
 		photo_cam.height = video.videoHeight;
+		alert("cam width : " + photo_cam.offsetWidth + " video offsetWidth : " + video.offsetWidth + " test : " + video.videoWidth);
 		context.drawImage(video, 0, 0);
+		context.drawImage(filter_img , relative_filter_pos_x, relative_filter_pos_y);
 
-		//dessine le filtre sélectionné.
-		
-		 
+		//dessine le filtre sélectionné.	 
 	}
-
-	// fonction pour ajouter un filtre sur la partie video.
-	// n'est pas disponible avec l'importation de la photo.
-	function add_filter(filter)
-	{
-		alert('vous avez cliqué sur ' + filter);
-	}
-
-
 
 	// fonction appellé a l'ajout d'une photo de l'utilisateur
 	function preview_image() 
 	{
+		
+
 		context.clearRect(0, 0, 32, 32);
 		photo_imported.style.visibility = "visible";
 		photo_cam.style.visibility = "hidden";
@@ -207,7 +236,6 @@
 
 	
 </script>
-
 <!-- INCLUSION JS-->
 		<script src="js/media_video.js" type="text/javascript"></script>
 <?php require_once("includes/footer.php"); ?>

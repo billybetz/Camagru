@@ -33,14 +33,17 @@
 			{
 				if ($ret['rank'] == 1)
 					$error = "Veuillez valider votre compte.";
-				$_SESSION['log_status'] = $ret['rank'];
-				$_SESSION['id'] = $login;
+				else
+				{
+					$_SESSION['log_status'] = $ret['rank'];
+					$_SESSION['id'] = $login;
 		?>
-			<script>
-				window.location.replace("galerie.php");
-			</script>
+					<script>
+						window.location.replace("galerie.php");
+					</script>
 				
 		<?php
+				}
 			}
 			else
 				$error = "Nom de compte ou mot de passe incorrect";

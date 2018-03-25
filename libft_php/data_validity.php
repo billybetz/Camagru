@@ -10,7 +10,7 @@ function ft_str_have_digit($chaine)
 	return (FALSE);
 }
 
-function check_login($login, $bdd)
+function ft_check_login($login, $bdd)
 {
 	if ($login == "")
 		return ("Champ obligatoire");
@@ -30,7 +30,7 @@ function check_login($login, $bdd)
 	return("");
 }
 
-function check_email($email, $bdd)
+function ft_check_email($email, $bdd)
 {
 	
 
@@ -45,14 +45,14 @@ function check_email($email, $bdd)
 	return("");
 }
 
-function check_mdp($mdp)
+function ft_check_mdp($mdp)
 {
 	if (strlen($mdp) < 5)
 		return ("mot de passe trop court");
 	return("");
 }
 
-function check_mdp2($mdp, $mdp2)
+function ft_check_mdp2($mdp, $mdp2)
 {
 	if ($mdp != $mdp2)
 		return ("vos mots de passe ne correspondent pas");

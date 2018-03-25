@@ -79,7 +79,6 @@ img
   font-size: 16px;
   border: #88ca71 solid 1px;
   line-height: 34px;
-	
 }
 
 .menu_button:active
@@ -167,6 +166,12 @@ img
     height: 265px;
     background-color: #efefef;
     border: #88ca71 solid 1px;
+}
+
+#filter_img
+{
+  position: absolute;
+  border: none;
 }
 
 .button_photo

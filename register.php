@@ -28,15 +28,16 @@
 		$email = $_POST["email"];
 		$errors = array();
 		
-		$errors['login'] = check_login($login, $bdd);
-		$errors['email'] = check_email($email, $bdd);
-		$errors['mdp'] = check_mdp($mdp);
-		$errors['mdp2'] = check_mdp2($mdp, $mdp2);
+		$errors['login'] = ft_check_login($login, $bdd);
+		$errors['email'] = ft_check_email($email, $bdd);
+		$errors['mdp'] = ft_check_mdp($mdp);
+		$errors['mdp2'] = ft_check_mdp2($mdp, $mdp2);
 		if ($errors['login'] == "" && $errors['email'] == "" && $errors['mdp'] == "")
 		{
 			$sql = 	'
 			INSERT INTO camagru.Users (pseudo, email, passwd, rank) 
-			VALUES ("'.$login.'", "'.$email.'", "'.$mdp.'", 1);';
+				VALUES ("'.$login.'", "'.$email.'", "'.$mdp.'", 1);';
+
 			$ret = ft_exe_sql_rqt("add user", $bdd, $sql);
 			if (!$ret)
 				$_SESSION['reg_success'] = -1;
