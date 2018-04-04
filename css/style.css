@@ -115,6 +115,7 @@ img
 	font-size:30px;
 	white-space: nowrap;
 	color: white;
+  font-family: "Bookman", sans-serif;
 }
 
 /*-_-_-_-_- galerie.php -_-_-_-_-*/
@@ -224,18 +225,18 @@ div.image_galerie img
   border: none;
 }
 
-.button_photo
+#button_photo
 {
-	height: 2em;
+    height: 2em;
     width: 10em;
     margin-left: 6em;
     white-space: nowrap;
-    background-color: #e8e3e3;
+    background-color: #dad7d7;
     padding: 3 20 3 20;
     border: grey solid 1px;
     border-radius: 4px;
-    color: black;
-    cursor: pointer;
+    color: #989494;
+    cursor: help;
 }
 
 .photos_interface
@@ -266,6 +267,21 @@ div.image_galerie img
 #monfichier
 {
   margin-top: 21em;
+}
+
+#button_publish
+{
+  height: 20px;
+  display: none;
+  width: 4em;
+  margin-top: 11px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dad7d7;
+  padding: 3px 17px 3px 17px;
+  border: grey solid 1px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 #button_download

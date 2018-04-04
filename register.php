@@ -10,9 +10,9 @@
   $title = "Registration";
   require_once("includes/header.php");
   //fontions de verification des donnees de formulaire
-  require_once("libft_php/data_validity.php");
+  require_once("php_functions/data_validity.php");
   //fonctions d'éxécution des requetes sql
-  require_once("libft_php/sql_rqt.php");
+  require_once("php_functions/sql_rqt.php");
 ?>
 
 

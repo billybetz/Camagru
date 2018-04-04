@@ -11,7 +11,7 @@
   $title = "my account";
   require_once("includes/header.php");
   //fonctions d'éxécution des requetes sql
-  require_once("libft_php/sql_rqt.php");
+  require_once("php_functions/sql_rqt.php");
   // contient les variables global utilisés comme les paths relatif.
   require_once("includes/globals.php");
 ?>

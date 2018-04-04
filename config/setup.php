@@ -1,7 +1,8 @@
 <?php
-require_once("libft_php/sql_rqt.php");
+require_once("php_functions/sql_rqt.php");
 require_once("config/database.php");
 //mysql server data
+
 $servername = $DB_SERVERNAME;
 $user = $DB_USER;
 $passwd = $DB_PASSWORD;
@@ -14,12 +15,10 @@ if ($bdd->connect_error)
   echo ("fail to connect to database" . mysqli_connect_error ());
 }
 
-
 // creation de la base de donnée nomée camagru
 
 $sql = "CREATE DATABASE if NOT EXISTS camagru";
 ft_exe_sql_rqt("create db", $bdd, $sql);
-
 
 //creation de la table user
 
@@ -51,7 +50,7 @@ ft_exe_sql_rqt("create photos table", $bdd, $sql);
 // creation de la table des commentaires
 
 $sql = "
-CREATE TABLE `camagru`.`comments` 
+CREATE TABLE if NOT EXISTS `camagru`.`comments` 
 ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL COMMENT 'id de l\'utilsateur qui a posté le commentaire' , `photo_id` INT NOT NULL COMMENT 'id de la photo sur laquelle le commentaire est posté' , `comment` TEXT NOT NULL COMMENT 'commentaire de l\'utilisateur' , `timestamp` BIGINT(20) NOT NULL COMMENT 'heure à l\'aquelle le commentaire a été posté (precision ms)' , PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 ";
@@ -61,7 +60,7 @@ ft_exe_sql_rqt("create comments table", $bdd, $sql);
 // creation de la table des Likes
 
 $sql = "
-CREATE TABLE `camagru`.`likes` 
+CREATE TABLE if NOT EXISTS `camagru`.`likes` 
 ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL COMMENT 'id de l\'utilisateur qui a aimé le dommentaire ou la photo' , `photo_id` INT NULL DEFAULT NULL COMMENT 'photo a laquelle fait référence le like si c\'est une photo qui est like' , `comment_id` INT NULL DEFAULT NULL COMMENT 'commentaire auquel fait référence le like si c\'est un commentaire qui est like' , PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 ";
@@ -71,19 +70,38 @@ ft_exe_sql_rqt("create likes table", $bdd, $sql);
 // creation de la table des filtres
 
 $sql = "
-CREATE TABLE `camagru`.`filters` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(128) NOT NULL COMMENT 'nom de la photo permettant de retrouver son emplacement' , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE if NOT EXISTS `camagru`.`filters` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(128) NOT NULL COMMENT 'nom de la photo permettant de retrouver son emplacement' , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ";
 ft_exe_sql_rqt("create likes table", $bdd, $sql);
 
 
-// création du user admin
+// données user admin
 $admin_id = "root1234admin";
 $admin_pass = hash('whirlpool', 'root1');
 $admin_mail = "billy0196@gmail.com";
-$sql = "
-	INSERT INTO camagru.Users (pseudo, passwd, email, rank) 
-	VALUES ('".$admin_id."', '".$admin_pass."', '".$admin_mail."', 3);
-	";
-ft_exe_sql_rqt("insert root", $bdd, $sql);
 
+// check si le compte user a deja été crée
+
+$sql = "
+  SELECT 
+    COUNT(*)
+  from 
+    camagru.Users 
+  WHERE 
+    pseudo='".$admin_id."';
+";
+
+$ret = ft_exe_sql_rqt("check if root exist", $bdd, $sql);
+$ret = mysqli_fetch_array($ret);
+
+if ($ret[0] == 0)
+{
+  $sql = "
+  	INSERT INTO 
+      camagru.Users (pseudo, passwd, email, rank) 
+  	VALUES 
+      ('".$admin_id."', '".$admin_pass."', '".$admin_mail."', 3);
+  	";
+  ft_exe_sql_rqt("insert root", $bdd, $sql);
+}
 ?>

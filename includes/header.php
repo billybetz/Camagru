@@ -3,6 +3,7 @@
 		session_start();
 	
 	require_once("includes/bdd.php");
+	require_once("config/setup.php");
 ?>
 
 <!DOCTYPE hmtl>
