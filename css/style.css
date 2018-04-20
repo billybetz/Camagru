@@ -304,6 +304,7 @@ div.image_galerie img
     height: 335px;
     background-color: #efefef;
     border: #88ca71 solid 1px;
+    max-width: 400px;
 }
 
 .vos_photo
@@ -313,6 +314,7 @@ div.image_galerie img
   display: block;
   color: white;
   text-align: center;
+  max-width: 400px;
 }
 
 .mini_galerie
@@ -320,7 +322,8 @@ div.image_galerie img
     width: 160px;
     height: 160px;
     background-color: grey;
-    margin: auto;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
 }
 

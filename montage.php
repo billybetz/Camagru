@@ -15,19 +15,23 @@
 
   // contient les variables global utilisés comme les paths relatif.
   require_once("includes/globals.php");
-  if (isset($_SESSION['test']))
-  {
-  	echo (" ok : " . $_SESSION['test']);
-  }
-  else
-  {
-  	echo ("KO");
-  }
+
+  //debug pour ajax
+  // if (isset($_SESSION['test']))
+  // {
+  // 	echo (" ok : " . $_SESSION['test']);
+  // }
+  // else
+  // {
+  // 	echo ("KO");
+  // }
+
 ?>
 
 <!-- CORP DE LA PAGE -->
 
 <!-- Partie des filtres -->
+
 <div class="filter_container">
 
 	<?php 
@@ -44,8 +48,11 @@
 
 </div>
 
+<!-- Corp de la page avec la video, la partie photo et mini galerie -->
+
 <div class="grid-3 has-gutter main" >
 
+<!-- PARTIE VIDEO -->
 	<div class="video_interface">
 		<video id="video" onclick="change_filter_pos(event);">Browser blocked video</video><br>
 		<div style="margin-top: 1em;">
@@ -55,8 +62,9 @@
 	</div>
 
 
-
+<!-- PARTIE PHOTO -->
 	<div class="photos_interface">
+
 		<!-- Cadre pour une photo prise de la webcam -->
 		<canvas id="photo_cam">
 			Your browser does not accept canvas
@@ -81,44 +89,39 @@
 	</div>
 
 
+<!-- PARTIE MINI-GALERIE -->
 	<div style="margin-top: -33px;">
 		<label class="vos_photo">Vos photos</label>
-		<div class="grid-2-small-1 has-gutter preview_container">
-		<!-- AFFICHAGE DES PHOTOS DU USER -->
-		<div class="mini_galerie">Photo1</div>
-		<div class="mini_galerie">Photo2</div>
-		<div class="mini_galerie">Photo3</div>
-		<div class="mini_galerie">Photo4</div>
-		<div class="mini_galerie">Photo5</div>
-		<div class="mini_galerie">Photo6</div>
-		<?php 
-
+		<div class="grid-2-medium-1 has-gutter preview_container">
+			<!-- AFFICHAGE DES PHOTOS DU USER -->
+			<?php 
 			if (isset($_SESSION['id']))
 			{
 				$sql = 'SELECT *
 				FROM camagru.pictures;';
-		?>
-
-		<?php
-				// requete de récupération des image a afficher sur l'index
-				
 
 				$ret = ft_exe_sql_rqt("select pictures of current user", $bdd, $sql);
-
-
 				while ($picture = mysqli_fetch_array($ret))
 				{
+					$image = file_get_contents($picture_dir.$picture['name']);
+					$base64 = base64_encode(file_get_contents($picture_dir.$picture['name']));
+					// echo $base64;
+					str_replace("+", " ", $base64);
 					echo '<div class="mini_galerie">';
-					echo'<img  src="'.$picture_dir.$picture['name'].'" alt="" />';
-					echo '</div>'; 
-				 }
+					// echo'<img  src="data:image/png;base64, "'.$base64.' alt="test" />';
+					echo'<img  src="'.$picture_dir.$picture['name'].'" alt="test" />';
+
+					echo '</div>';
+				}
 			}
-		?>
-			</div>
+			?>
 	</div>
 </div>
 
+<!-- Image utilisé pour la previw du filtre sur le canvas video -->
 <img id="filter_img" onclick="change_filter_pos(event);"></div>
+
+<!-- canvas vide permettant la comparaison avec la partie photo verifiant si le canvas photo est vide ou non -->
 <canvas id='blank_canvas' style='display:none'></canvas>
 <script> 
 	var photo_cam = document.getElementById("photo_cam");
@@ -140,8 +143,8 @@
 	var width_photo_cam = photo_cam.offsetWidth;
 	var height_photo_cam = photo_cam.offsetHeight;
 
-	var filter_width =  width_cam * 37 / 100;
-	var filter_height = height_cam * 37 / 100;
+	var filter_width =  width_cam * 50 / 100;
+	var filter_height = height_cam * 50 / 100;
 	
 
 
@@ -206,7 +209,7 @@
 
 			context.drawImage(video, 0, 0);
 			//dessine le filtre sélectionné.
-			context.drawImage(filter_img , relative_filter_pos_x, relative_filter_pos_y, filter_photo_width,filter_photo_height);	
+			context.drawImage(filter_img , relative_filter_pos_x, relative_filter_pos_y, filter_photo_width,filter_photo_height);
 		}
 		else
 		{
@@ -249,26 +252,22 @@
 		}
 		else
 		{
+			// Récupération des infos de la fonction ajax a appelée
 			if (photo_imported.src)
 				photo = photo_imported.src;
 			else
 				photo = photo_cam.toDataURL();
+			// récupération du pseudo de l'utilisateur courant 
+			var id = <?php echo ("\"".$_SESSION['id']."\"")?>;
+			var fonction = "get_photo";
+			var ext = ".png";
 			
 			// Requete Ajax
 			var http = new XMLHttpRequest();
 			var url = "ajax.php";
 
-			// récupération du pseudo de l'utilisateur courant 
-			var id = <?php echo ("\"".$_SESSION['id']."\"")?>;
-
 			// création des paramètres a envoyer  a la fonction ajax
-			var params = "fonction=get_photo&photo="+ photo + "&user=" + id;
-
-			// on ouvre les ports serveur pour pouvoir faire la requete ajax
-			http.open("POST", url, true);
-
-			//application du header de http
-			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			var params = "fonction=" + fonction + "&photo=" + photo + "&user=" + id + "&ext=" + ext;
 
 			// dès que le serveur change la valeur de readyState de la requete http on rentre dans cette fonction.
 			http.onreadystatechange = function() 
@@ -278,6 +277,9 @@
         			alert(http.responseText);
     			}
 			}
+
+			http.open("POST", url, true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.send(params);
 		}
 	}
@@ -287,5 +289,4 @@
 <!-- INCLUSION JS-->
 	<!-- fonction de récupération de caméra -->
 	<script src="js/media_video.js" type="text/javascript"></script>
-
 <?php require_once("includes/footer.php"); ?>
